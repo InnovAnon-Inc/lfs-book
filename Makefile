@@ -10,7 +10,7 @@ book: stage-5.$(EXT)
 	docker build -t innovanon/$@ $(TEST) .
 commit:
 	git add .
-	git commit -m '[Makefile] commit'
+	git commit -m '[Makefile] commit' || :
 	git pull
 	git push
 
