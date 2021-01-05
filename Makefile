@@ -16,7 +16,7 @@ commit:
 
 stage-5.tgz: stage-5/.sentinel
 	cd $(shell dirname $<) && \
-	tar acvf ../$@ --owner=0 --group=0 .
+	tar acvf ../$@ # --owner=0 --group=0 .
 
 stage-5/.sentinel: $(shell find stage-5 -type f)
 	openssl rand -out $@ $(shell echo '2 ^ 10' | bc )
