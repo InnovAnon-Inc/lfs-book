@@ -21,7 +21,7 @@ jobs:
           name: Install dependencies
           command: |
             apk add --no-cache \
-              make
+              make openssl
       #        py-pip=9.0.0-r1
       #      pip install \
       #        docker-compose==1.12.0 \
