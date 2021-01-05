@@ -63,6 +63,7 @@ jobs:
             if [ "${CIRCLE_BRANCH}" == "master" ]; then
               #docker tag lfs-book "InnovAnon-Inc/lfs-book:${CIRCLE_SHA1}"
               #docker push           "InnovAnon-Inc/lfs-book:${CIRCLE_SHA1}"
+              docker login -u $DOCKERHUB_USERNAME -p $DOCKERHUB_PASSWORD
               docker push innovanon/book
             fi
 
