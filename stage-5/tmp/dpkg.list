@@ -1,0 +1,12 @@
+#! /usr/bin/env -S tail -n +2
+docbook
+docbook-xsl
+libxml2-dev
+libxml2-utils
+libxslt1-dev
+make
+subversion
+tidy
+xmlto
+xsltproc
+
