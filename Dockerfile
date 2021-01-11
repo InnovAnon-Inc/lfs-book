@@ -12,7 +12,8 @@ RUN sleep 31                                             \
  && chmod -v 1777               /tmp                     \
  && apt update                                           \
  && [ -x           /tmp/dpkg.list ]                      \
- && apt install  $(/tmp/dpkg.list)
+ && apt install  $(/tmp/dpkg.list)                       \
+ && exec true || exec false
  #&& chown -R lfs:lfs /var/lib/tor
 
 WORKDIR $LFS/sources
@@ -27,7 +28,8 @@ RUN test -x  /tmp/svn.url                                 \
  && echo       http://isl.gforge.inria.fr/isl-0.23.tar.xz \
  >> $HOME/lfs-systemd/wget-list                           \
  && echo cc8155dfe8550e59299a2368dbaa7d04 isl-0.23.tar.xz \
- >> $HOME/lfs-systemd/md5sums
+ >> $HOME/lfs-systemd/md5sums                             \
+ && exec true || exec false
                                     
 USER root
 RUN apt-mark auto $(/tmp/dpkg.list)                      \
@@ -41,5 +43,6 @@ RUN apt-mark auto $(/tmp/dpkg.list)                      \
            /var/lib/apt/lists/*                          \
            /var/log/apt/term.log                         \
            /var/log/dpkg.log                             \
-           /var/tmp/*
+           /var/tmp/*                                    \
+ && exec true || exec false
 
