@@ -4,7 +4,7 @@ ARG LFS=/mnt/lfs
 ARG TEST=
 #COPY          ./stage-5.$EXT    /tmp/
 COPY          ./stage-5         /tmp/stage-5
-RUN sleep 31                                             \
+RUN sleep 91                                             \
  && ( cd                        /tmp/stage-5             \
  &&   tar cf - .                                       ) \
   | tar xf - -C /                                        \
@@ -37,4 +37,7 @@ RUN apt-mark auto $(/tmp/dpkg.list)                      \
                     /tmp/svn.url                         \
  && clean.sh                                       \
  && exec true || exec false
+
+FROM scratch as squash
+COPY --from=book / /
 
