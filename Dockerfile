@@ -35,14 +35,6 @@ USER root
 RUN apt-mark auto $(/tmp/dpkg.list)                      \
  && rm    -v        /tmp/dpkg.list                       \
                     /tmp/svn.url                         \
- && apt autoremove                                       \
- && apt clean                                            \
- && rm -rf /tmp/*                                        \
-           /var/log/alternatives.log                     \
-           /var/log/apt/history.log                      \
-           /var/lib/apt/lists/*                          \
-           /var/log/apt/term.log                         \
-           /var/log/dpkg.log                             \
-           /var/tmp/*                                    \
+ && clean.sh                                       \
  && exec true || exec false
 
