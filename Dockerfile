@@ -1,4 +1,5 @@
 FROM innovanon/bare as book
+USER root
 ARG EXT=tgz
 ARG LFS=/mnt/lfs
 ARG TEST=
@@ -6,8 +7,8 @@ ARG TEST=
 COPY          ./stage-5         /tmp/stage-5
 RUN sleep 91                                             \
  && ( cd                        /tmp/stage-5             \
- &&   tar cf - .                                       ) \
-  | tar xf - -C /                                        \
+ &&   tar  pcf - .                                       ) \
+  | tar  pxf - -C /                                        \
  && rm -rf                      /tmp/stage-5             \
  && chmod -v 1777               /tmp                     \
  && apt update                                           \
@@ -38,6 +39,10 @@ RUN apt-mark auto $(/tmp/dpkg.list)                      \
  && clean.sh                                       \
  && exec true || exec false
 
-FROM scratch as squash
-COPY --from=book / /
+#FROM book as squash-tmp
+#USER root
+#RUN  squash.sh
+#FROM scratch as squash
+#ADD --from=squash-tmp /tmp/final.tar /
 
+FROM book
